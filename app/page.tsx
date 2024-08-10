@@ -1,10 +1,25 @@
+
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 export default function Home() {
   return (
     <div>
-      <Button/>
+      <Button >hey there , welcome to dipnet</Button>
+
+      <Button>
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </Button>
     </div>
   );
 }
