@@ -1,27 +1,45 @@
-import React from "react";
-import { Button } from "./ui/button";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { ModeToggle } from "./mode-toggle";
+import { authOptions } from '@/lib/auth'
+import { getServerSession } from 'next-auth'
+import Link from 'next/link'
 
-const Navbar = () => {
+import { buttonVariants } from './ui/button'
+import { CircleArrowDownIcon } from 'lucide-react'
+import { ModeToggle } from './mode-toggle'
+import { UserAccountNav } from './auth/profile'
+
+
+
+const Navbar = async () => {
+  const session = await getServerSession(authOptions)
   return (
-    <div className=" h-16 bg-slate-200 pl-5">
-      <div className="flex justify-between items-center align-middle ">
-        <h1 className=" font-extrabold text-zinc-500 text-2xl">DIPNET</h1>
-        <div className="flex justify-between items-center align-middle p-3 gap-5">
-          <Button variant={"outline"}>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </Button>
-          <ModeToggle />
-        </div>
-      </div>
-    </div>
-  );
-};
+    <div className='fixed top-0 inset-x-0 bg-zinc-100 border-b border-zinc-300 z-[10] py-2 '>
+      <div className='container max-w-7xl h-full mx-auto flex items-center justify-between gap-2'>
+        {/* logo */}
+        <Link href='/' className='flex gap-2 items-center'>
+          <CircleArrowDownIcon className='h-8 w-8 sm:h-6 sm:w-6' />
+          <p className='hidden text-zinc-700 text-2xl font-extrabold md:block'>DIPNET</p>
+        </Link>
 
-export default Navbar;
+        {/* search bar */}
+        {/* <SearchBar /> */}
+
+        {/* actions */}
+        <div className=' flex gap-5 items-center'>
+        {session?.user ? (
+          <UserAccountNav user={session.user} />
+        ) : (
+          <Link href='/sign-in' className={buttonVariants()}>
+            Sign In
+          </Link>
+        )}<div className=' bg-red-500'>
+        {/* <ModeToggle/> */}
+        <ModeToggle/>
+      </div>
+      </div>
+      </div>
+      
+    </div>
+  )
+}
+
+export default Navbar

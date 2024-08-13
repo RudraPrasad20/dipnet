@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { useCustomToasts } from "@/components/custom-alert";
-import { CreateSubredditPayload } from "@/lib/validators/communityType";
+import { CreateSubredditPayload } from "@/lib/validators/community";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -55,7 +55,7 @@ const page = () => {
   });
 
   return (
-    <div className="container flex items-center h-full max-w-3xl mx-auto p-6 rounded-lg shadow-lg">
+    <div className="container mt-12 flex items-center h-full max-w-3xl mx-auto p-6 rounded-lg shadow-lg">
       <div className="relative bg-white w-full h-fit p-4 rounded-lg space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-semibold">Create a Community</h1>
@@ -69,7 +69,7 @@ const page = () => {
             Community names including capitalization cannot be changed.
           </p>
           <div className="relative">
-            <p className="absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400 ">
+            <p className="absolute pr-3 text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400 ">
               dip/
             </p>
             <Input
@@ -84,12 +84,12 @@ const page = () => {
           <Button
             // isLoading comes form the tenstack -> usequery
             disabled={isPending}
-            variant={"secondary"}
+            variant={"outline"}
             onClick={() => router.back()}
           >
             Cancel
           </Button>
-          <Button
+          <Button 
             disabled={input.length === 0}
             onClick={() => createCommunity()}
           >
