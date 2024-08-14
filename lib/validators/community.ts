@@ -8,5 +8,5 @@ export const CommunitySubscriptionValidator = z.object({
   communityId: z.string(),
 })
 
-export type CreateSubredditPayload = z.infer<typeof CommunityValidator>
-export type SubscribeToSubredditPayload = z.infer<typeof CommunitySubscriptionValidator>
+export type CreateCommunityPayload = z.infer<typeof CommunityValidator>
+export type SubscribeToCommunityPayload = z.infer<typeof CommunitySubscriptionValidator>
