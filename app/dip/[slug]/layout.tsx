@@ -106,7 +106,7 @@ const Layout = async ({
                   variant: 'outline',
                   className: 'w-full mb-6',
                 })}
-                href={`dip/${slug}/submit`}>
+                href={`/dip/${slug}/submit`}>
                 Create Post
               </Link>
             </dl>

@@ -4,20 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { useCustomToasts } from "@/components/custom-alert";
-import { CreateSubredditPayload } from "@/lib/validators/community";
+import { CreateCommunityPayload } from "@/lib/validators/community";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const { loginToast } = useCustomToasts();
   const [input, setInput] = useState<string>("");
 
   const { mutate: createCommunity, isPending } = useMutation({
     mutationFn: async () => {
-      const payLoad: CreateSubredditPayload = {
+      const payLoad: CreateCommunityPayload = {
         name: input,
       };
       const { data } = await axios.post("/api/community", payLoad);
@@ -101,4 +101,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
