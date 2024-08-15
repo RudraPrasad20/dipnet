@@ -19,7 +19,7 @@ export async function GET(req: Request) {
       },
     })
 
-    followedCommunitiesIds = followedCommunities.map((sub) => sub.community.id)
+    followedCommunitiesIds = followedCommunities.map((sub: any) => sub.community.id)
   }
 
   try {
