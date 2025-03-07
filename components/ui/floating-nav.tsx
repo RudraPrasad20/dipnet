@@ -91,7 +91,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import ModeToggler from "../modeToggle";
+import { ModeToggle } from "../modeToggle";
+
+
 
 export const FloatingNav = ({
   navItems,
@@ -134,9 +136,9 @@ export const FloatingNav = ({
           <span className="hidden sm:block text-sm">{navItem.name}</span>
         </Link>
       ))}
-      <ModeToggler />
       <span className="absolute inset-y-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px" />
       <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px" />
+      <ModeToggle/>
       <span></span> <span></span>
     </motion.div>
   );

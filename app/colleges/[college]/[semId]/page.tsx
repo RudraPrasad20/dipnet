@@ -35,6 +35,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { notFound, useSearchParams } from "next/navigation";
+import Loading from "@/app/loading";
+import LoadingReshults from "@/components/loading";
 
 type Student = {
   id: number;
@@ -228,7 +230,7 @@ export default function StudentList({ params }: { params: { college: string, sem
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  Loading Data Wait a Sec...
+                  <LoadingReshults/>
                 </TableCell>
               </TableRow>
             )}

@@ -1,38 +1,58 @@
-'use client';
+"use client";
 
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { Button } from './ui/button';
+import * as React from "react";
+import { Moon, Sun } from "lucide-react";
 
-export default function ModeToggler() {
+import { useTheme } from "next-themes";
+import { Switch } from "./ui/switch";
+import { Button } from "./ui/button";
+
+export function ModeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
-  const switchTheme = () => {
-    switch (theme) {
-      case 'light':
-        setTheme('dark');
-        break;
-      case 'dark':
-        setTheme('light');
-        break;
-      default:
-        break;
-    }
-  };
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const toggleTheme = () => {
-      switchTheme();
-  };
+  if (!mounted) return null;
 
-  return (
-    <Button
-      onClick={toggleTheme}
-      size="icon"
-      className="group rounded-lg border-none bg-transparent shadow-none hover:bg-blue-600/5"
-    >
-      <Moon className="absolute size-6 rotate-90 scale-0 transition-all group-hover:text-zinc-300 dark:rotate-0 dark:scale-100 dark:text-white" />
-      <Sun className="size-6 rotate-0 scale-100 text-black transition-all group-hover:text-zinc-500 dark:-rotate-90 dark:scale-0" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  );
+  const isDarkMode =
+    theme === "dark" ||
+    (theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+  const renderToggle = () =>
+    theme ? (
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() =>
+          theme === "light" ? setTheme("dark") : setTheme("light")
+        }
+      >
+        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    ) : (
+      <div className="flex items-center gap-2">
+        <Sun
+          className={`h-5 w-5 transition-all duration-300 ${
+            isDarkMode ? "text-primary/50" : "text-blue-600"
+          }`}
+        />
+        <Switch
+          checked={isDarkMode}
+          onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+        />
+        <Moon
+          className={`h-5 w-5 transition-all duration-300 ${
+            isDarkMode ? "text-blue-600" : "text-primary/50"
+          }`}
+        />
+      </div>
+    );
+
+  return renderToggle();
 }
