@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { FloatingNavDemo } from "@/components/navbar";
+import { Appbar } from "@/components/appBar";
 
 
 
@@ -27,7 +27,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main><FloatingNavDemo/>{children}</main>
+          <main>
+            <Appbar />
+            {children}
+            </main>
         </ThemeProvider>
       </body>
     </html>

@@ -27,7 +27,7 @@ const CollegesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-24 mx-6">
+    <div className="flex flex-col items-center mx-6">
       {/* Center the search bar */}
       <div className="w-full mt-3 max-w-md">
         <Input
