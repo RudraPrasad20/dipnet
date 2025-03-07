@@ -101,8 +101,12 @@ const columns: ColumnDef<Student>[] = [
   },
 ];
 
-export default function StudentList({ params }: { params: { college: string, semId: string } }) {
-  const searchParams = useSearchParams()
+export default function StudentList({
+  params,
+}: {
+  params: { college: string; semId: string };
+}) {
+  const searchParams = useSearchParams();
   const { college, semId } = params;
   const semesterId = parseInt(semId, 10);
   const batch = searchParams.get("batch");
@@ -114,14 +118,16 @@ export default function StudentList({ params }: { params: { college: string, sem
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 40 });
 
-  if (isNaN(semesterId)  || !batch || !year ) {
+  if (isNaN(semesterId) || !batch || !year) {
     notFound();
   }
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(`/api/data/${college}?semId=${semesterId}&batch=${batch}&year=${year}`);
+        const response = await axios.get(
+          `/api/data/${college}?semId=${semesterId}&batch=${batch}&year=${year}`
+        );
         setStudents(response.data);
       } catch (error) {
         console.error("Error fetching students:", error);
@@ -230,7 +236,7 @@ export default function StudentList({ params }: { params: { college: string, sem
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  <LoadingReshults/>
+                  <LoadingReshults />
                 </TableCell>
               </TableRow>
             )}
