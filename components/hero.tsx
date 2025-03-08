@@ -1,48 +1,70 @@
 "use client";
-
-import { useRouter } from "next/navigation";
-import { BackgroundLines } from "./ui/background-lines";
-import { Button } from "./ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "./ui/button";
 
-// import React from "react";
-// import { BackgroundLines } from "@/components/ui/background-lines";
-// import { Button } from "./ui/button";
-// import { useRouter } from "next/navigation";
-
-// export function Hero() {
-//   const router = useRouter()
-//   return (
-//     <>
-//     <BackgroundLines className="flex items-center justify-center w-full flex-col ">
-//       <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
-//         Finding Results? <br /> Here We Go...
-//       </h2>
-//       {/* <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
-//         No Need to wonder for results anymore,
-//         any time anywhere with dipnet
-//       </p> */}
-//     </BackgroundLines>
-// </>
-//   );
-// }
-
-export function Hero() {
-  const router = useRouter();
-
+export default function LandingPage() {
   return (
-    <>
-      <BackgroundLines className="flex items-center justify-center w-full h-screen flex-col">
-        <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans py-4 sm:py-6 md:py-10 relative z-20 font-bold tracking-tight">
-          Finding Results? <br /> Here We Go...
-        </h2>
-        <Button
-          className="relative z-10"
-          onClick={() => router.push("/colleges")}
+    <div className="flex min-h-screen flex-col">
+      <main className="flex h-full flex-col items-center justify-center gap-4">
+        {/* Hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.25,
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          }}
+          className="flex max-w-7xl flex-col items-center justify-center gap-2 px-4"
         >
-          Find Results
-        </Button>
-      </BackgroundLines>
-    </>
+          <h1 className="max-w-2xl py-2 pt-20 text-center text-5xl font-extrabold tracking-tighter md:text-6xl xl:text-7xl">
+            <span className="w-fit bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text pr-1.5 text-center text-transparent md:mb-4">
+              Dipnet,
+            </span>{" "}
+            <span className="bg-gradient-to-b from-primary/90 to-primary/60 bg-clip-text py-1 text-transparent">
+              Where Students Connect & Create
+            </span>
+          </h1>
+
+          <p className="mx-auto text-center text-lg font-medium tracking-tight text-primary/80 md:text-xl">
+            A Space to Learn, Share & Grow!
+          </p>
+        </motion.div>
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.5,
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          }}
+          className="flex items-center justify-center gap-2 py-5"
+        >
+          <Button size={"lg"} asChild>
+            <Link href={"/colleges"} target="_blank">
+              Explore
+            </Link>
+          </Button>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.75,
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          }}
+          className="relative mx-auto my-4 flex w-full flex-col items-center justify-center overflow-hidden antialiased"
+        ></motion.div>
+      </main>
+    </div>
   );
 }
