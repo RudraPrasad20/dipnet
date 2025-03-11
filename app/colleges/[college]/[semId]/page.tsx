@@ -35,8 +35,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { notFound, useSearchParams } from "next/navigation";
-import Loading from "@/app/loading";
-import LoadingReshults from "@/components/loading";
+import Loading from "@/components/loading";
 
 type Student = {
   id: number;
@@ -159,7 +158,7 @@ export default function StudentList({
   });
 
   return (
-    <div className="w-full p-6 mt-14">
+    <div className="w-full p-6 mt-0">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter by name..."
@@ -236,7 +235,7 @@ export default function StudentList({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  <LoadingReshults />
+                  <Loading />
                 </TableCell>
               </TableRow>
             )}
